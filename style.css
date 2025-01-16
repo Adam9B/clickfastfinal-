@@ -33,22 +33,23 @@ h1 {
   text-align: center;
 }
 
-.catchphrase {
-  margin: 3rem 0;
-  text-align: center;
+#scores-list {
+  list-style-type: none;
+  padding: 0;
 }
 
-.number {
-  margin: 3rem 0;
-  text-align: center;
-  background-color: blanchedalmond;
-  width: 10rem;
-  height: 10rem;
+#scores-list li {
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 25%;
-  font-size: 3rem;
-  font-weight: bold;
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
 }
 
+#scores-list img {
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 50px; /* Vous pouvez ajuster la taille selon vos besoins */
+  height: 50px;
+}

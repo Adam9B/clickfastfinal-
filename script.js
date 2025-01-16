@@ -86,7 +86,7 @@ const postData = async () => {
     createdAt: new Date().toISOString(),
     username: "Adam Le Boss du click" ,
     avatar:
-      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F0EpIWybDPfI%2Fhqdefault.jpg&f=1&nofb=1&ipt=ce88f4f6a1f2aee8e614210b05c3d89497b10763c7fd4ff1651ce821f5b3cd8d&ipo=images",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNkONILskrl41lDu6PV0TGE17U6CpzacEEDASmxOd_ogL5sjfzh5O-vuno0nawrxYO2M&usqp=CAU",
     score: BestScore,
     website_url: "https://adam9b.github.io/clickfastfinal-/",
   };
@@ -194,3 +194,43 @@ getData();
 
 // // Appel de la fonction pour supprimer et ajouter un utilisateur
 // deleteUserByUsername(usernameToDelete);
+const displayScores = async () => {
+  const url = "https://672e1217229a881691eed80f.mockapi.io/scores";
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    const scoresList = document.getElementById("scores-list");
+
+    // Vider la liste des scores avant d'ajouter les nouveaux scores
+    scoresList.innerHTML = "";
+
+    data.forEach((score) => {
+      const listItem = document.createElement("li");
+
+      // Créer une balise img pour l'avatar
+      const avatarImg = document.createElement("img");
+      avatarImg.src = score.avatar;
+      avatarImg.alt = `${score.username}'s avatar;`
+
+      // Ajouter l'avatar et le score à l'élément de liste
+      listItem.appendChild(avatarImg);
+      listItem.appendChild(
+        document.createTextNode( `${score.username}: ${score.score}`)
+      );
+      scoresList.appendChild(listItem);
+    });
+
+    console.log("Scores displayed successfully:", data);
+  } catch (error) {
+    console.error("Error displaying scores:", error);
+  }
+};
+
+// Appel de la fonction pour afficher les scores
+displayScores();
